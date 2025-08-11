@@ -22,6 +22,11 @@
                                     <p class="card-text">Lượt xem: {{ $i->clicks }}</p>
                                     <a href="{{ route('movies.show', $i->id) }}" class="detail-btn btn btn-warning w-100 position-absolute ">Xem ngay</a>
                                 </div>
+                                @if($i->is_series == 1)
+                                    <span class="badge bg-success position-absolute top-0 start-0 m-2">Phim bộ</span>
+                                @else
+                                    <span class="badge bg-danger position-absolute top-0 start-0 m-2">Phim lẻ</span>
+                                @endif
                             </div>
                         </div>
                     @endforeach

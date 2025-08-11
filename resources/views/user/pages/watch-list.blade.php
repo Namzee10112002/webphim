@@ -54,6 +54,11 @@
                                         <a href="{{ route('movies.show', $watch->movieDetail->movie->id) }}"
                                             class="btn btn-warning w-100">Xem ngay</a>
                                 </div>
+                                @if($watch->movieDetail->movie->is_series == 1)
+                                    <span class="badge bg-success position-absolute top-0 start-0 m-2">Phim bộ</span>
+                                @else
+                                    <span class="badge bg-danger position-absolute top-0 start-0 m-2">Phim lẻ</span>
+                                @endif
                             </div>
                         </div>
                     @endforeach

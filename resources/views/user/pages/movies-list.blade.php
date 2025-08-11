@@ -89,7 +89,7 @@
             <div class="row g-3">
                 @foreach($movies as $movie)
                     <div class="col-md-4">
-                        <div class="movie-card">
+                        <div class="card movie-card">
                             <a href="{{ route('movies.show', $movie->id) }}">
                                 <img src="{{ $movie->image_movie }}" alt="{{ $movie->title }}">
                             </a>
@@ -98,6 +98,11 @@
                             <p class="card-text">Quốc gia: {{ $movie->countries->pluck('name_country')->unique()->join(', ') . "\n" }}</p>
                             <p>Phát hành: {{ $movie->year_release }}</p>
                             <p>Lượt xem: {{ $movie->clicks }}</p>
+                            @if($movie->is_series == 1)
+                                    <span class="badge bg-success position-absolute top-0 start-0 m-2">Phim bộ</span>
+                                @else
+                                    <span class="badge bg-danger position-absolute top-0 start-0 m-2">Phim lẻ</span>
+                                @endif
                         </div>
                     </div>
                 @endforeach
