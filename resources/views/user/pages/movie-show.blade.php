@@ -37,16 +37,15 @@
                     <p><strong>Diễn viên:</strong> {{ $movie->actor }}</p>
                     <p><strong>Thời lượng:</strong> {{ $movie->duration }}</p>
                     <p><strong>Lượt xem:</strong> {{ $movie->clicks }}</p>
-                    <form action="{{ route('movies.like', $movie->id) }}" method="POST" class="d-inline">
-                        @csrf
-                        <button id="btn-like" data-id="{{ $movie->id }}">
-                            @if($userCheckLike)
-                                ❤️ Đã thích (<span id="like-count">{{ $movie->movie_likes_count }}</span>)
-                            @else
-                                ❤️ Thích (<span id="like-count">{{ $movie->movie_likes_count }}</span>)
-                            @endif
-                        </button>
-                    </form>
+                    @if(Auth::check())
+                    <button id="btn-like" data-id="{{ $movie->id }}">
+                        @if($userCheckLike)
+                            ❤️ Đã thích (<span id="like-count">{{ $movie->movie_likes_count }}</span>)
+                        @else
+                            ❤️ Thích (<span id="like-count">{{ $movie->movie_likes_count }}</span>)
+                        @endif
+                    </button>
+                    @endif
                 </div>
             </div>
         </div>
@@ -64,7 +63,7 @@
                     _token: '{{ csrf_token() }}'
                 },
                 success: function (res) {
-                   if (res.clear==1) {
+                    if (res.clear==1) {
                         $('#btn-like').html('❤️ Thích (<span id="like-count">' + res.movie_likes_count + '</span>)');
                     } else {
                         $('#btn-like').html('❤️ Đã thích (<span id="like-count">' + res.movie_likes_count + '</span>)');

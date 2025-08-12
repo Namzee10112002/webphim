@@ -24,7 +24,10 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/');
+            if(Auth::user()->role==1 || Auth::user()->role==2){
+            return redirect()->route('admin.home')->with('success', 'Đăng nhập thành công.');
+        }
+        return redirect()->route('home')->with('success', 'Đăng nhập thành công.');
         }
 
         return back()->withErrors([

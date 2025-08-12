@@ -5,23 +5,41 @@
         {{-- Cột trái: Thông tin phim --}}
         <div class="col-md-8">
             <h3>Thông tin phim</h3>
-            <form action="{{ route('admin.movies.update', $movie->id) }}" method="POST">
-                @csrf
-                <div class="mb-3">
-                    <label class="form-label">Tên phim</label>
-                    <input type="text" name="name_movie" value="{{ $movie->name_movie }}" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Mô tả</label>
-                    <textarea name="description" class="form-control" rows="4">{{ $movie->description }}</textarea>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Thumbnail</label>
-                    <input type="text" name="thumbnail" value="{{ $movie->image_movie }}" class="form-control">
-                    <img src="{{ $movie->image_movie }}" alt="" width="100px" class="mt-2">
-                </div>
-                <button class="btn btn-primary">Cập nhật phim</button>
-            </form>
+            {{-- Form cập nhật thông tin chính của phim --}}
+<form action="{{ route('admin.movies.update', $movie->id) }}" method="POST">
+    @csrf
+    <div class="mb-3">
+        <label class="form-label">Tên phim</label>
+        <input type="text" name="name_movie" value="{{ $movie->name_movie }}" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Mô tả</label>
+        <textarea name="description" class="form-control" rows="4">{{ $movie->description }}</textarea>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Thumbnail</label>
+        <input type="text" name="image_movie" value="{{ $movie->image_movie }}" class="form-control">
+        <img src="{{ $movie->image_movie }}" alt="" width="100px" class="mt-2">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Đạo diễn</label>
+        <input type="text" name="director" value="{{ $movie->director }}" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Diễn viên</label>
+        <input type="text" name="actor" value="{{ $movie->actor }}" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Thời lượng (phút)</label>
+        <input type="text" name="duration" value="{{ $movie->duration }}" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Năm phát hành</label>
+        <input type="number" name="year_release" value="{{ $movie->year_release }}" class="form-control">
+    </div>
+    <button class="btn btn-primary">Cập nhật phim</button>
+</form>
+
             <div class="mb-3">
                 <h5>Thể loại</h5>
                 @foreach($allGenres as $genre)

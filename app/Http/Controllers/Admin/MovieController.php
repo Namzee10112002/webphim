@@ -48,10 +48,20 @@ class MovieController extends Controller
 
     // Cập nhật thông tin phim
     public function update(Request $request, $id)
-    {
-        $movie = Movie::findOrFail($id);
-        $movie->update($request->all());
+{
+    $movie = Movie::findOrFail($id);
 
-        return redirect()->back()->with('success', 'Cập nhật thành công');
-    }
+    $movie->update([
+        'name_movie'   => $request->name_movie,
+        'description'  => $request->description,
+        'image_movie'  => $request->image_movie,
+        'director'     => $request->director,
+        'actor'        => $request->actor,
+        'duration'     => $request->duration,
+        'year_release' => $request->year_release,
+    ]);
+
+    return back()->with('success', 'Cập nhật phim thành công');
+}
+
 }

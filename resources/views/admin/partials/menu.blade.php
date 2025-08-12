@@ -16,13 +16,18 @@
                         <a class="nav-link" href="{{route('admin.movies.index')}}">Quản lý phim</a>
                     </li>
                     <li class="nav-item mb-2">
-                        <a class="nav-link" href="">Quản lý đánh giá</a>
+                        <a class="nav-link" href="{{route('admin.reviews.index')}}">Quản lý đánh giá</a>
                     </li>
                     <li class="nav-item mb-2">
-                        <a class="nav-link" href="">Thống kê</a>
+                        <a class="nav-link" href="{{route('admin.statistics.index')}}">Thống kê</a>
                     </li>
                     <li class="nav-item mt-auto border-top">
-                        <a class="nav-link text-danger" href="{{route('logout')}}">Đăng xuất</a>
+                        <form action="{{ route('logout')}}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-danger text-white mt-2">
+                                    Đăng xuất
+                                </button>
+                            </form>
                     </li>
                 </ul>
             </nav>

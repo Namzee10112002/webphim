@@ -34,8 +34,13 @@
                 <!-- Comment -->
                 <h5>Bình luận</h5>
                 <textarea class="form-control" id="comment-content"></textarea>
-                <button class="btn btn-primary" id="btn-comment" data-id="{{ $currentEpisode->id }}">Gửi</button>
-                <div class="comment-list">
+                @if(!Auth::check()) 
+                
+                    <a href="/auth" class="text-white btn btn-primary mt-2">Đăng nhập để bình luận</a>
+                @else 
+                    <button class="btn btn-primary mt-2" id="btn-comment" data-id="{{ $currentEpisode->id }}">Gửi</button>
+                @endif
+                <div class="comment-list mt-5">
                     @foreach($comments as $comment)
                         <div class="border p-2 mb-2">
                             <strong>{{ $comment->user->name }}</strong>: {{ $comment->content }}
@@ -55,6 +60,7 @@
                     <p><strong>Diễn viên:</strong> {{ $movie->actor }}</p>
                     <p><strong>Thời lượng:</strong> {{ $movie->duration }}</p>
                     <p><strong>Lượt xem:</strong> {{ $movie->clicks }}</p>
+                    @if(Auth::check())
                     <button id="btn-like" data-id="{{ $movie->id }}">
                         @if($userCheckLike)
                             ❤️ Đã thích (<span id="like-count">{{ $movie->movie_likes_count }}</span>)
@@ -71,6 +77,7 @@
                             📌 Xem sau
                         @endif
                     </button>
+                    @endif
                 </div>
             </div>
         </div>

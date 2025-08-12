@@ -21,8 +21,8 @@
         <tr>
             <td><img src="{{ $movie->image_movie }}" width="80"></td>
             <td>{{ $movie->name_movie }}</td>
-            <td>{{ $movie->genres->pluck('name_genre')->join(', ') }}</td>
-            <td>{{ $movie->countries->pluck('name_country')->join(', ') }}</td>
+            <td>{{ $movie->genres->pluck('name_genre')->unique()->join(', ') }}</td>
+            <td>{{ $movie->countries->pluck('name_country')->unique()->join(', ') }}</td>
             <td>{{ $movie->clicks }}</td>
             <td>{{ $movie->movie_likes_count }}</td>
             <td>{{ $movie->is_series ? 'Phim bộ' : 'Phim lẻ' }}</td>

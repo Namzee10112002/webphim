@@ -67,4 +67,16 @@ class Movie extends Model
     {
         return $this->belongsToMany(Country::class, 'movie_variants', 'movie_id', 'country_id');
     }
+    public function comments()
+{
+    return $this->hasManyThrough(
+        Comment::class,
+        MovieDetail::class,
+        'movie_id',         // Khóa ngoại trên bảng movie_details
+        'movie_detail_id',  // Khóa ngoại trên bảng comments
+        'id',               // Khóa chính của bảng movies
+        'id'                // Khóa chính của bảng movie_details
+    );
+}
+
 }
